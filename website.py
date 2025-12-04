@@ -112,7 +112,7 @@ def fetch_data(topic_key:str,current_difficulty:str,current_emotion:str) -> dict
 
 
 
-def get_adaptive_quiz_data(topic_key: str,current_level: str) -> dict:
+def get_adaptive_quiz_data(topic_key: str,current_level: str,feedback: str, correct: bool, time: float) -> dict:
     """
     Generates an adaptive quiz question by selecting a question randomly
     from the difficulty level determined adaptively.
@@ -125,6 +125,6 @@ def get_adaptive_quiz_data(topic_key: str,current_level: str) -> dict:
               or an error message if generation fails.
     """
     # 1. Evaluate student's current state (emotion and difficulty)
-    current_emotion = evaluate_emotional_status(topic_key)
+    current_emotion = evaluate_emotional_status(correct,time,feedback)
     (current_topic,current_difficulty) = evaluate_difficulty(topic_key=topic_key,level=current_level,emotion_state=current_emotion)
     return fetch_data(current_topic,current_difficulty,current_emotion)

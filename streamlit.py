@@ -5,7 +5,7 @@ import time
 # get_adaptive_quiz_data, fetch_data are in 'website.py' OR 'src/quiz_generator.py'
 
 # We'll use the 'website' module placeholder for the import
-from website import display_topic, load_content, get_adaptive_quiz_data, fetch_data # ADDED fetch_data
+from website import display_topic, load_content, get_adaptive_quiz_data, fetch_data
 
 # --- Initialize Session State (Centralized State Management) ---
 if 'page' not in st.session_state:
@@ -26,8 +26,19 @@ if 'current_level' not in st.session_state:
     st.session_state['current_level'] = 'easy'  # Default starting level
 if 'first_quiz_load' not in st.session_state: # Track if this is the very first question for the topic
     st.session_state['first_quiz_load'] = True
-if 'new_topic_triggered' not in st.session_state: # NEW: Stores the topic key if a topic change is triggered
+if 'new_topic_triggered' not in st.session_state: # Stores the topic key if a topic change is triggered
     st.session_state['new_topic_triggered'] = None
+
+# --- NEW STATE VARIABLES ---
+if 'question_start_time' not in st.session_state:
+    st.session_state['question_start_time'] = time.time() # Start time of the current question
+if 'time_spent_sec' not in st.session_state:
+    st.session_state['time_spent_sec'] = 0.0 # Time taken to answer the current question
+if 'last_answer_correct' not in st.session_state:
+    st.session_state['last_answer_correct'] = None # Stores True/False/None for the last attempt
+# Store the feedback for the submitted question
+if 'last_feedback' not in st.session_state:
+    st.session_state['last_feedback'] = None
 
 
 st.title("🎓 Smart Python Tutor")
@@ -49,6 +60,8 @@ if topic.lower() != st.session_state['topic_key']:
     st.session_state['attempt_count'] = 0 # Reset attempts
     st.session_state['first_quiz_load'] = True # Reset first load flag when topic changes
     st.session_state['new_topic_triggered'] = None # Clear triggered topic
+    st.session_state['last_answer_correct'] = None # Reset success status
+    st.session_state['last_feedback'] = None # Reset feedback
 
 
 # --- Main Content Renderer ---
@@ -67,9 +80,10 @@ if st.session_state['page'] == 'tutorial':
         st.session_state['attempt_count'] = 0
         st.session_state['first_quiz_load'] = True # SET TO TRUE upon entering quiz flow
         st.session_state['new_topic_triggered'] = None # Ensure no topic change is pending
+        st.session_state['question_start_time'] = time.time() # START TIMER
         st.rerun()
 
-# --- NEW PAGE: Topic Change Explanation ---
+# --- Topic Change Explanation Page ---
 elif st.session_state['page'] == 'topic_change_explanation':
     
     new_topic = st.session_state['new_topic_triggered']
@@ -93,13 +107,14 @@ elif st.session_state['page'] == 'topic_change_explanation':
         st.session_state['quiz_submitted'] = False
         st.session_state['user_choice'] = None
         st.session_state['show_hint'] = False
-        st.session_state['first_quiz_load'] = True # Ensure fetch_data is called for the *first* question of the new topic
+        st.session_state['first_quiz_load'] = True
         st.session_state['new_topic_triggered'] = None # Clear the trigger
+        st.session_state['question_start_time'] = time.time() # START TIMER for the new question
         # 3. Move to the quiz page
         st.session_state['page'] = 'quiz'
         st.rerun()
 
-# --- Existing Quiz Page Logic ---
+# --- Quiz Page Logic (Updated) ---
 elif st.session_state['page'] == 'quiz':
     
     # --- Data Fetching Logic (Called only when current_quiz is empty) ---
@@ -108,39 +123,46 @@ elif st.session_state['page'] == 'quiz':
             
             # Use fetch_data for the very first question of a new topic flow
             if st.session_state['first_quiz_load']:
-                # Assuming 'current_emotion' is a static value 'neutral' for this initial call
                 quiz_data = fetch_data(st.session_state['topic_key'], st.session_state['current_level'], "neutral")
                 st.session_state['first_quiz_load'] = False # Next question will not be a 'first load'
             else:
                 # Use the adaptive function for all subsequent questions
-                quiz_data = get_adaptive_quiz_data(st.session_state['topic_key'],st.session_state['current_level'])
+                # In a real system, last_feedback would be passed to influence the next question difficulty
+                quiz_data = get_adaptive_quiz_data(
+                    st.session_state['topic_key'],
+                    st.session_state['current_level'],
+                    st.session_state['last_feedback'],
+                    st.session_state['last_answer_correct'],
+                    st.session_state['time_spent_sec']
+                    # Here you would pass st.session_state['last_feedback'] to the adaptive model
+                )
             
-            print("quiz data:",quiz_data)
             
             # --- CRITICAL TOPIC CHANGE CHECK (AFTER ADAPTIVE CALL) ---
             new_topic_key = quiz_data.get('topic_key')
             
             if new_topic_key and new_topic_key != st.session_state['topic_key']:
-                # Topic change triggered! Set up the transition page.
                 st.session_state['new_topic_triggered'] = new_topic_key
-                # Also capture the new level determined by the quiz generator
                 if 'difficulty_chosen' in quiz_data:
                     st.session_state['current_level'] = quiz_data['difficulty_chosen']
-                # Reset temporary quiz data
                 st.session_state['current_quiz'] = None
-                # Change the page state to the new explanation page
                 st.session_state['page'] = 'topic_change_explanation'
                 st.rerun()
                 
             # If no topic change (or for the initial fetch_data call):
             st.session_state['current_quiz'] = quiz_data # Store the fetched data
-            # Safely update current_level if the key exists
             if 'difficulty_chosen' in quiz_data:
                  st.session_state['current_level'] = quiz_data['difficulty_chosen']
             
+            # Reset timer and success status for the NEW question
+            st.session_state['question_start_time'] = time.time()
+            st.session_state['last_answer_correct'] = None
+            st.session_state['time_spent_sec'] = 0.0 # Clear previous time
+            st.session_state['last_feedback'] = None # Reset feedback for the new question
+            
     quiz_data = st.session_state['current_quiz']
 
-    # --- Error Handling & Display UI (Rest of the quiz page logic remains the same) ---
+    # --- Error Handling ---
     if 'error' in quiz_data:
         st.error(f"Could not load quiz: {quiz_data['error']}")
         if st.button("⬅️ Back to Tutorial", key='quiz_error_back'):
@@ -148,8 +170,6 @@ elif st.session_state['page'] == 'quiz':
             st.rerun()
         st.stop()
 
-
-    # Prepare data for display
     question = quiz_data["question"]
     options = quiz_data.get("options", [])
     correct_index = quiz_data.get("answer_index")
@@ -168,7 +188,7 @@ elif st.session_state['page'] == 'quiz':
     
     # Display the adaptive state
     if 'difficulty_chosen' in quiz_data:
-        st.info(f"💡 **Tutor State:** Level **{quiz_data['difficulty_chosen'].upper()}**")
+        st.info(f"💡 **Tutor State:** Level **{st.session_state['current_level'].upper()}**")
 
     st.subheader(question)
 
@@ -195,6 +215,15 @@ elif st.session_state['page'] == 'quiz':
         # Submit is only enabled if not yet submitted AND an option is selected
         submit_disabled = st.session_state['quiz_submitted'] or user_choice_index is None
         if st.button("Submit Answer", disabled=submit_disabled, key='submit_quiz'):
+            
+            # --- TIMER STOP & SUCCESS STATUS CAPTURE ---
+            time_taken = time.time() - st.session_state['question_start_time']
+            st.session_state['time_spent_sec'] = time_taken
+            
+            user_choice_index = st.session_state['user_choice']
+            is_correct = (user_choice_index == correct_index)
+            st.session_state['last_answer_correct'] = is_correct # CAPTURE SUCCESS STATUS
+            
             st.session_state['quiz_submitted'] = True
             st.session_state['show_hint'] = False
             st.rerun() 
@@ -215,15 +244,15 @@ elif st.session_state['page'] == 'quiz':
     if st.session_state['quiz_submitted']:
         st.markdown("---")
         
-        user_choice_index = st.session_state['user_choice']
-        is_correct = (user_choice_index == correct_index)
+        is_correct = st.session_state['last_answer_correct']
+        time_display = f"{st.session_state['time_spent_sec']:.2f} seconds"
         
         # 1. Feedback
         if is_correct: 
-            st.success(" **Correct!** Excellent solution. You've earned a mastery point!")
+            st.success(f" **Correct!** Excellent solution. (Time: {time_display})")
             
         else:
-            st.error("**Incorrect.** The correct solution is revealed below.")
+            st.error(f"**Incorrect.** The correct solution is revealed below. (Time: {time_display})")
 
         # 2. Show Solution/Explanation (Always shown after submission)
         st.markdown("### Correct Solution:")
@@ -231,10 +260,25 @@ elif st.session_state['page'] == 'quiz':
         st.info(f"The correct option was: **{correct_answer_text}**") 
         st.code(f"Explanation: {quiz_data.get('explanation', 'No explanation provided.')}", language="markdown")
         
+        # --- NEW: Question-Specific Feedback ---
+        st.markdown("### Quick Feedback: How was this question?")
+        # Ensure the radio button key is unique per question load cycle
+        feedback_key = f"q_feedback_{hash(question)}"
+        question_difficulty = st.radio(
+            "Help the tutor improve the next question:",
+            options=["Too Easy", "Just Right", "Too Hard", "Unclear Question"],
+            key=feedback_key
+        )
+        # Store the selected feedback before proceeding
+        st.session_state['last_feedback'] = question_difficulty
+
         # 3. Next Step Button
         st.markdown("---")
+        
         if st.button("➡️ Move to Next Question/Topic", key='next_quiz_btn'):
-            # This call will run the data fetching logic again and trigger the topic change check if applicable
+            # In a real system, st.session_state['last_feedback'] is used 
+            # by the get_adaptive_quiz_data call in the next run.
+            
             st.session_state['current_quiz'] = None 
             st.session_state['quiz_submitted'] = False
             st.session_state['user_choice'] = None
@@ -250,6 +294,7 @@ elif st.session_state['page'] == 'quiz':
         st.session_state['current_quiz'] = None
         st.session_state['user_choice'] = None
         st.session_state['show_hint'] = False
-        st.session_state['first_quiz_load'] = True # Reset for the next time the user enters the quiz
+        st.session_state['first_quiz_load'] = True 
         st.session_state['new_topic_triggered'] = None
+        st.session_state['last_feedback'] = None
         st.rerun()
