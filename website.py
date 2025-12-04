@@ -2,6 +2,10 @@ import streamlit as st
 import json
 import os
 from gemini_api import generate_mcq_explanation
+from evaluate import evaluate_emotional_status
+from Q_learning import evaluate_difficulty
+
+
 def load_content():
     """Loads the course content from the JSON file."""
     # Construct path to the file
@@ -34,54 +38,6 @@ def display_topic(topic_key):
         
     else:
         st.warning("Topic not found.")
-
-
-# Assuming other functions like load_content and display_topic are here
-
-QUIZ_QUESTIONS = {
-    "variables": {
-        "question": "What is the result of the following code? `x = 5; x = x + 1; print(x)`",
-        "options": ["5", "6", "Error", "1"],
-        "answer": "6",
-        "explanation": "The variable `x` is reassigned. It starts at 5, then is incremented by 1, making its final value 6."
-    },
-    "loops": {
-        "question": "Which loop type is generally preferred when you know the exact number of iterations?",
-        "options": ["While Loop", "Do-While Loop", "For Loop", "Infinite Loop"],
-        "answer": "For Loop",
-        "explanation": "The `for` loop is ideal for definite iteration, such as iterating over a range or a list."
-    }
-}
-
-def take_quiz(topic_key):
-    """Displays a quiz question for the given topic key."""
-    
-    quiz_data = QUIZ_QUESTIONS.get(topic_key)
-    
-    if not quiz_data:
-        st.warning(f"Quiz questions for '{topic_key.capitalize()}' are not yet available.")
-        return
-
-    st.header(f"Quiz: {topic_key.capitalize()} Mastery Check")
-    st.markdown("---")
-
-    question = quiz_data["question"]
-    options = quiz_data["options"]
-    answer = quiz_data["answer"]
-    explanation = quiz_data["explanation"]
-
-    st.subheader(question)
-    
-    # Create radio buttons for options
-    user_choice = st.radio("Select your answer:", options, key=f"quiz_{topic_key}")
-
-    if st.button("Submit Answer"):
-        if user_choice == answer:
-            st.success("✅ Correct! Excellent work.")
-        else:
-            st.error(f"❌ Incorrect. The correct answer was **{answer}**.")
-        
-        st.info(f"**Explanation:** {explanation}")
 
 
 
@@ -121,25 +77,10 @@ def import_quiz_data(file_path: str = 'questions.json') -> Dict[str, Any]:
         print(f"An unexpected error occurred: {e}")
         return {}
 
-from evaluate import evaluate_emotional_status, evaluate_difficulty
 
-def get_adaptive_quiz_data(topic_key: str) -> dict:
-    """
-    Generates an adaptive quiz question by selecting a question randomly
-    from the difficulty level determined adaptively.
 
-    Args:
-        topic_key (str): The programming concept (e.g., 'variables', 'Loops').
-
-    Returns:
-        dict: A dictionary containing only 'question', 'answer', and 'explanation' (from hint + answer),
-              or an error message if generation fails.
-    """
-    # 1. Evaluate student's current state (emotion and difficulty)
-    current_emotion = evaluate_emotional_status(topic_key)
-    current_difficulty = evaluate_difficulty(current_emotion)
+def fetch_data(topic_key:str,current_difficulty:str,current_emotion:str) -> dict:
     QUESTIONS_DATA = import_quiz_data()
-    # 2. Validate Topic and Difficulty
     if topic_key not in QUESTIONS_DATA:
         return {"error": f"Topic '{topic_key}' not found in quiz data."}
     
@@ -165,6 +106,25 @@ def get_adaptive_quiz_data(topic_key: str) -> dict:
         "hint": selected_problem["hint"],
         "explanation": expalnation,
         "difficulty_chosen": current_difficulty, # Added for debugging/tracking
-        "emotion_evaluated": current_emotion     # Added for debugging/tracking
+        "emotion_evaluated": current_emotion,
+        "topic_key":topic_key     # Added for debugging/tracking
     }
 
+
+
+def get_adaptive_quiz_data(topic_key: str,current_level: str) -> dict:
+    """
+    Generates an adaptive quiz question by selecting a question randomly
+    from the difficulty level determined adaptively.
+
+    Args:
+        topic_key (str): The programming concept (e.g., 'variables', 'Loops').
+
+    Returns:
+        dict: A dictionary containing only 'question', 'answer', and 'explanation' (from hint + answer),
+              or an error message if generation fails.
+    """
+    # 1. Evaluate student's current state (emotion and difficulty)
+    current_emotion = evaluate_emotional_status(topic_key)
+    (current_topic,current_difficulty) = evaluate_difficulty(topic_key=topic_key,level=current_level,emotion_state=current_emotion)
+    return fetch_data(current_topic,current_difficulty,current_emotion)

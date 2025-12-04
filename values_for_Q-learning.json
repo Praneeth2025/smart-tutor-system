@@ -1,0 +1,130 @@
+{
+    "Q_TABLE": {
+        "variables_easy": {
+            "highly_confident": 66.515423191,
+            "confident": 42.311704225,
+            "confused": 39.606157499999995,
+            "highly_confused": 23.370415361825,
+            "frustrated": 5.509379224999999
+        },
+        "variables_medium": {
+            "highly_confident": 47.269927599999995,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 5.966275,
+            "frustrated": 0.0
+        },
+        "variables_hard": {
+            "highly_confident": 24.981775000000003,
+            "confident": 14.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "conditionals_easy": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "conditionals_medium": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "conditionals_hard": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "loops_easy": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "loops_medium": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "loops_hard": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "functions_easy": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "functions_medium": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "functions_hard": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "oops_easy": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "oops_medium": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        },
+        "oops_hard": {
+            "highly_confident": 0.0,
+            "confident": 0.0,
+            "confused": 0.0,
+            "highly_confused": 0.0,
+            "frustrated": 0.0
+        }
+    },
+    "V_TABLE": {
+        "variables_easy": 66.515423191,
+        "variables_medium": 47.269927599999995,
+        "variables_hard": 24.981775000000003,
+        "conditionals_easy": 0.0,
+        "conditionals_medium": 0.0,
+        "conditionals_hard": 0.0,
+        "loops_easy": 0.0,
+        "loops_medium": 0.0,
+        "loops_hard": 0.0,
+        "functions_easy": 0.0,
+        "functions_medium": 0.0,
+        "functions_hard": 0.0,
+        "oops_easy": 0.0,
+        "oops_medium": 0.0,
+        "oops_hard": 0.0
+    },
+    "HYPERPARAMETERS": {
+        "learning_rate_eta": 0.7,
+        "discount_factor_gamma": 0.9
+    }
+}

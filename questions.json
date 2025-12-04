@@ -1,6 +1,6 @@
 {
     "variables": {
-        "Easy": {
+        "easy": {
             "problems": [
                 {
                     "id": "1",
@@ -44,7 +44,7 @@
                 }
             ]
         },
-        "Medium": {
+        "medium": {
             "problems": [
                 {
                     "id": "6",
@@ -88,7 +88,7 @@
                 }
             ]
         },
-        "Hard": {
+        "hard": {
             "problems": [
                 {
                     "id": "11",
@@ -133,8 +133,8 @@
             ]
         }
     },
-    "conditional": {
-        "Easy": {
+    "conditionals": {
+        "easy": {
             "problems": [
                 {
                     "id": "1",
@@ -178,7 +178,7 @@
                 }
             ]
         },
-        "Medium": {
+        "medium": {
             "problems": [
                 {
                     "id": "6",
@@ -222,7 +222,7 @@
                 }
             ]
         },
-        "Hard": {
+        "hard": {
             "problems": [
                 {
                     "id": "11",
@@ -268,7 +268,7 @@
         }
     },
     "loops": {
-        "Easy": {
+        "easy": {
             "problems": [
                 {
                     "id": "1",
@@ -312,7 +312,7 @@
                 }
             ]
         },
-        "Medium": {
+        "medium": {
             "problems": [
                 {
                     "id": "6",
@@ -356,7 +356,7 @@
                 }
             ]
         },
-        "Hard": {
+        "hard": {
             "problems": [
                 {
                     "id": "11",
@@ -402,7 +402,7 @@
         }
     },
     "functions": {
-        "Easy": {
+        "easy": {
             "problems": [
                 {
                     "id": "1",
@@ -446,7 +446,7 @@
                 }
             ]
         },
-        "Medium": {
+        "medium": {
             "problems": [
                 {
                     "id": "6",
@@ -490,7 +490,7 @@
                 }
             ]
         },
-        "Hard": {
+        "hard": {
             "problems": [
                 {
                     "id": "11",
@@ -536,7 +536,7 @@
         }
     },
   "oops": {
-        "Easy": {
+        "easy": {
             "problems": [
                 {
                     "id": "1",
@@ -580,7 +580,7 @@
                 }
             ]
         },
-        "Medium": {
+        "medium": {
             "problems": [
                 {
                     "id": "6",
@@ -624,7 +624,7 @@
                 }
             ]
         },
-        "Hard": {
+        "hard": {
             "problems": [
                 {
                     "id": "11",
