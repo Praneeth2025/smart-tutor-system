@@ -11,7 +11,25 @@ This script:
 
 import os
 from google import genai
+def generate_mcq_explanation(question: str, options: list, correct_answer: str,
+                             emotion: str, topic: str) -> str:
+    """
+    Main callable function used by website.py
+    """
 
+    prompt = build_tutor_prompt(
+        emotion=emotion,
+        topic=topic,
+        question=question,
+        options=options,
+        correct_answer=correct_answer
+    )
+
+    try:
+        result = call_gemini(prompt)
+        return result
+    except Exception as e:
+        return f"(⚠️ LLM Error) Unable to generate explanation: {e}"
 # ---------------------------
 # STUDENT INPUT SIMULATION
 # ---------------------------

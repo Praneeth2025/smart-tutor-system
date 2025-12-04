@@ -1,0 +1,134 @@
+{
+  "(1, 1, 3)": {
+    "increase_difficulty": 329.35119888886965,
+    "decrease_difficulty": 298.52517692450147,
+    "switch_style": 303.08716166918555,
+    "offer_revision": 313.8158584358597
+  },
+  "(2, 1, 3)": {
+    "increase_difficulty": 304.4676232949611,
+    "decrease_difficulty": 283.2894228317533,
+    "switch_style": 334.77749639196475,
+    "offer_revision": 255.78417870701287
+  },
+  "(2, 1, 4)": {
+    "increase_difficulty": 83.93677033801848,
+    "decrease_difficulty": 335.4845860760606,
+    "switch_style": 90.85984134922931,
+    "offer_revision": 91.41926308940461
+  },
+  "(2, 0, 4)": {
+    "increase_difficulty": 337.7288803153515,
+    "decrease_difficulty": 330.3651283330893,
+    "switch_style": 332.3271353381641,
+    "offer_revision": 333.4884116872012
+  },
+  "(3, 0, 4)": {
+    "increase_difficulty": 342.9495937400897,
+    "decrease_difficulty": 342.4263897906781,
+    "switch_style": 343.4615116325605,
+    "offer_revision": 345.48499126189756
+  },
+  "(4, 0, 4)": {
+    "increase_difficulty": 352.0490050495781,
+    "decrease_difficulty": 349.82268044054496,
+    "switch_style": 351.41165349111805,
+    "offer_revision": 351.4701550482078
+  },
+  "(1, 0, 3)": {
+    "increase_difficulty": 31.808772723839333,
+    "decrease_difficulty": 120.03255821659508,
+    "switch_style": 324.6780901577022,
+    "offer_revision": 20.674248377517372
+  },
+  "(1, 0, 4)": {
+    "increase_difficulty": 186.3105943718681,
+    "decrease_difficulty": 130.46143004574157,
+    "switch_style": 195.20156796753267,
+    "offer_revision": 328.70735804026543
+  },
+  "(3, 1, 4)": {
+    "increase_difficulty": 29.148727993622053,
+    "decrease_difficulty": 339.2367247021421,
+    "switch_style": 63.88202916752188,
+    "offer_revision": 64.7839292196231
+  },
+  "(3, 1, 3)": {
+    "increase_difficulty": 23.745066449315743,
+    "decrease_difficulty": 29.424908936246027,
+    "switch_style": 46.40675101695868,
+    "offer_revision": 288.9819908336011
+  },
+  "(3, 0, 3)": {
+    "increase_difficulty": 87.43684620866166,
+    "decrease_difficulty": 33.34959278018753,
+    "switch_style": 340.42903487872655,
+    "offer_revision": 0.0
+  },
+  "(2, 0, 3)": {
+    "increase_difficulty": 332.9340255238938,
+    "decrease_difficulty": 88.1834879383111,
+    "switch_style": 155.577317971915,
+    "offer_revision": 98.75472633664162
+  },
+  "(2, 0, 2)": {
+    "increase_difficulty": 7.0393845566615685,
+    "decrease_difficulty": 0.0,
+    "switch_style": 6.588626088956873,
+    "offer_revision": 1.4885294412464853
+  },
+  "(3, 0, 2)": {
+    "increase_difficulty": 1.9916836166431182,
+    "decrease_difficulty": 0.0,
+    "switch_style": 16.6353572296962,
+    "offer_revision": 0.0
+  },
+  "(2, 2, 3)": {
+    "increase_difficulty": -0.7444762040276327,
+    "decrease_difficulty": 87.73338921592426,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(2, 2, 2)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 1.469378705527752,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(3, 2, 2)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 5.514152947180934,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(3, 1, 2)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 0.9415791830382648,
+    "switch_style": 0.0,
+    "offer_revision": 1.9653984351936113
+  },
+  "(3, 1, 1)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 0.0,
+    "switch_style": 1.6062207279523866,
+    "offer_revision": 0.0
+  },
+  "(3, 2, 3)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 0.0,
+    "switch_style": 17.10236686866544,
+    "offer_revision": 0.0
+  },
+  "(3, 2, 4)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 7.879324212729983,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(4, 0, 3)": {
+    "increase_difficulty": 43.77552518002496,
+    "decrease_difficulty": 0.0,
+    "switch_style": 0.0,
+    "offer_revision": 2.3846316727804857
+  }
+}

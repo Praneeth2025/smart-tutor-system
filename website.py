@@ -3,7 +3,7 @@ import json
 import os
 from Module5_llm import generate_mcq_explanation
 from evaluate import evaluate_emotional_status
-from Q_learning import evaluate_difficulty
+from Module4_other import evaluate_difficulty
 
 
 def load_content():

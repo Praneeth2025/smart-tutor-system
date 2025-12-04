@@ -1,0 +1,140 @@
+{
+  "(1, 1, 3)": {
+    "increase_difficulty": 326.8193681769511,
+    "decrease_difficulty": 320.67464460443375,
+    "switch_style": 323.78842470938,
+    "offer_revision": 322.618516855375
+  },
+  "(2, 1, 3)": {
+    "increase_difficulty": 321.27020970549745,
+    "decrease_difficulty": 318.85503002885565,
+    "switch_style": 332.98083851968624,
+    "offer_revision": 317.8173190737309
+  },
+  "(2, 1, 4)": {
+    "increase_difficulty": 151.23937678877547,
+    "decrease_difficulty": 337.09834773580076,
+    "switch_style": 156.95524464539,
+    "offer_revision": 158.98848260909367
+  },
+  "(2, 0, 4)": {
+    "increase_difficulty": 335.66060649249516,
+    "decrease_difficulty": 330.3857462324718,
+    "switch_style": 331.32547285706147,
+    "offer_revision": 331.5745253634468
+  },
+  "(3, 0, 4)": {
+    "increase_difficulty": 343.1607185191074,
+    "decrease_difficulty": 342.01983523601825,
+    "switch_style": 342.5217147117202,
+    "offer_revision": 344.5869340655738
+  },
+  "(4, 0, 4)": {
+    "increase_difficulty": 351.4570577407058,
+    "decrease_difficulty": 346.86397046934877,
+    "switch_style": 351.1946648159927,
+    "offer_revision": 351.12760586043913
+  },
+  "(1, 0, 3)": {
+    "increase_difficulty": 60.98806057913298,
+    "decrease_difficulty": 160.24659727618274,
+    "switch_style": 325.54489725490447,
+    "offer_revision": 21.01526147133208
+  },
+  "(1, 0, 4)": {
+    "increase_difficulty": 252.52073212977467,
+    "decrease_difficulty": 251.41294750799221,
+    "switch_style": 263.2747912251536,
+    "offer_revision": 328.2950152875064
+  },
+  "(3, 1, 4)": {
+    "increase_difficulty": 73.16263674694798,
+    "decrease_difficulty": 342.4109118821874,
+    "switch_style": 92.27359361211727,
+    "offer_revision": 64.81593558537656
+  },
+  "(3, 1, 3)": {
+    "increase_difficulty": 22.502751320334514,
+    "decrease_difficulty": 29.808601677317377,
+    "switch_style": 47.07177272163617,
+    "offer_revision": 301.5666615425431
+  },
+  "(3, 0, 3)": {
+    "increase_difficulty": 88.23811821686846,
+    "decrease_difficulty": 62.71858015441174,
+    "switch_style": 342.57765083004125,
+    "offer_revision": 33.910153514710224
+  },
+  "(2, 0, 3)": {
+    "increase_difficulty": 333.2015025071907,
+    "decrease_difficulty": 136.50874877297642,
+    "switch_style": 156.14208493262166,
+    "offer_revision": 143.5346758529183
+  },
+  "(2, 0, 2)": {
+    "increase_difficulty": 7.600823465435784,
+    "decrease_difficulty": 0.0,
+    "switch_style": 6.588626088956873,
+    "offer_revision": 1.4885294412464853
+  },
+  "(3, 0, 2)": {
+    "increase_difficulty": 2.0287756757777813,
+    "decrease_difficulty": 0.0,
+    "switch_style": 17.8040338454492,
+    "offer_revision": 0.0
+  },
+  "(2, 2, 3)": {
+    "increase_difficulty": -0.7444762040276327,
+    "decrease_difficulty": 88.85765639818176,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(2, 2, 2)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 1.469378705527752,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(3, 2, 2)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 5.514152947180934,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(3, 1, 2)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 0.9415791830382648,
+    "switch_style": 0.0,
+    "offer_revision": 2.002490494328274
+  },
+  "(3, 1, 1)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 0.0,
+    "switch_style": 1.6062207279523866,
+    "offer_revision": 0.0
+  },
+  "(3, 2, 3)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 0.0,
+    "switch_style": 51.09304471337987,
+    "offer_revision": 0.0
+  },
+  "(3, 2, 4)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 8.049118990927509,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(4, 0, 3)": {
+    "increase_difficulty": 122.59516959945961,
+    "decrease_difficulty": 0.0,
+    "switch_style": 0.0,
+    "offer_revision": 0.0
+  },
+  "(4, 1, 4)": {
+    "increase_difficulty": 0.0,
+    "decrease_difficulty": 0.0,
+    "switch_style": 0.0,
+    "offer_revision": 35.12534271502286
+  }
+}
