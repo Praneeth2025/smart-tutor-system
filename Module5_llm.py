@@ -5,10 +5,8 @@ from google.genai import types
 from typing import List
 
 
-API_KEY = "AIzaSyCL7V3y0xEwj-MyNodSuSBRAvmAqMyonME"
-
 try:
-    client = genai.Client(api_key=API_KEY)
+    client = genai.Client(api_key="")
 except Exception as e:
     print("Gemini initialization error:", e)
     client = None
