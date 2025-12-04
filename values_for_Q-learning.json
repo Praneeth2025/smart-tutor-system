@@ -1,7 +1,7 @@
 {
     "Q_TABLE": {
         "variables_easy": {
-            "highly_confident": 67.76357789574362,
+            "highly_confident": 67.75338374271512,
             "confident": 42.311704225,
             "confused": 39.606157499999995,
             "highly_confused": 23.370415361825,
@@ -107,7 +107,7 @@
         }
     },
     "V_TABLE": {
-        "variables_easy": 67.76357789574362,
+        "variables_easy": 67.75338374271512,
         "variables_medium": 47.4989053555429,
         "variables_hard": 24.999507925000003,
         "conditionals_easy": 0.0,
