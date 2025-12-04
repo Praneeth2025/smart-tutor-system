@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 import os
-from gemini_api import generate_mcq_explanation
+from Module5_llm import generate_mcq_explanation
 from evaluate import evaluate_emotional_status
 from Q_learning import evaluate_difficulty
 
