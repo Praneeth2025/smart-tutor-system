@@ -1,24 +1,54 @@
 import streamlit as st
 import time
-import os
 import re
-
-from bayes_model import infer_emotion, EMOTION_STATES
 from google import genai
+from bayes_model import infer_emotion, EMOTION_STATES
 
 
 # =====================================================
-#  GEMINI MCQ GENERATION
+# PAGE SETTINGS
+# =====================================================
+st.set_page_config(page_title="Smart Tutor (Gemini + Bayesian AI)")
+st.title("🎓 Smart AI Tutor (Gemini + Bayesian Emotional Intelligence)")
+
+
+# =====================================================
+# MAIN-SCREEN API KEY INPUT (NOT SIDEBAR)
+# =====================================================
+if "api_key" not in st.session_state:
+    st.session_state.api_key = ""
+
+if st.session_state.api_key == "":
+    st.subheader("🔐 Enter Your Gemini API Key to Begin")
+
+    st.session_state.api_key = st.text_input(
+        "Gemini API Key:",
+        placeholder="AIzaSy.................",
+        type="password"
+    )
+
+    if st.button("Continue ➜"):
+        if st.session_state.api_key.strip() == "":
+            st.error("API key cannot be empty.")
+        else:
+            st.rerun()
+
+    st.stop()   # STOP app until key is given
+
+
+# =====================================================
+# GEMINI MCQ GENERATION
 # =====================================================
 def generate_question(difficulty):
 
-    client = genai.Client(api_key="YOUR_API_KEY_HERE")
+    client = genai.Client(api_key=st.session_state.api_key)
 
     prompt = f"""
-    Generate ONE {difficulty} difficulty Python MCQ.
-    USE THIS EXACT FORMAT ONLY:
+    Generate ONE {difficulty}-difficulty Python MCQ.
 
-    Q: <question>
+    FORMAT STRICTLY:
+
+    Q: <question text>
 
     <python code here but DO NOT use backticks>
 
@@ -27,9 +57,6 @@ def generate_question(difficulty):
     C: <option3>
 
     Correct: <A/B/C>
-
-    RULES:
-    - No explanations.
     """
 
     response = client.models.generate_content(
@@ -38,15 +65,13 @@ def generate_question(difficulty):
     )
 
     raw = response.text
-    print("Gemini Response:", raw)
-
     lines = [l.strip() for l in raw.split("\n") if l.strip()]
 
-    # ---- Extract Question ----
+    # Extract question
     q_line = next((l for l in lines if l.startswith("Q:")), "")
     question_text = q_line.replace("Q:", "").strip()
 
-    # ---- Extract code lines ----
+    # Detect code
     code_lines = []
     for l in lines:
         if l.startswith(("Q:", "A:", "B:", "C:", "Correct:")):
@@ -54,94 +79,109 @@ def generate_question(difficulty):
         if "=" in l or "print" in l or "(" in l:
             code_lines.append(l)
 
-    # Code block
     if code_lines:
         question = question_text + "\n\n```python\n" + "\n".join(code_lines) + "\n```"
     else:
         question = question_text
 
-    # Extract Options
-    def extract(prefix):
-        line = next((l for l in lines if l.startswith(prefix)), "")
-        return line.replace(prefix, "").strip()
+    # Extract options
+    def get_opt(p):
+        line = next((l for l in lines if l.startswith(p)), "")
+        return line.replace(p, "").strip()
 
-    optA = extract("A:")
-    optB = extract("B:")
-    optC = extract("C:")
+    optA = get_opt("A:")
+    optB = get_opt("B:")
+    optC = get_opt("C:")
 
-    # Extract Correct Answer
+    # Extract correct
     correct_line = next((l for l in lines if l.startswith("Correct:")), "")
     match = re.search(r"Correct:\s*([ABC])", correct_line)
     correct_letter = match.group(1) if match else "A"
-
-    answer_index = {"A": 0, "B": 1, "C": 2}[correct_letter]
+    answer_idx = {"A": 0, "B": 1, "C": 2}[correct_letter]
 
     return {
         "question": question,
         "options": [optA, optB, optC],
-        "answer": answer_index
+        "answer": answer_idx
     }
 
 
 # =====================================================
-# STREAMLIT UI
+# SESSION STATE VARIABLES
 # =====================================================
-st.set_page_config(page_title="Smart Tutor (Gemini + Bayesian AI)")
-
-st.title("🎓 Smart AI Tutor (Gemini + Bayesian Emotional Intelligence)")
-
-
-# -------- SESSION STATE --------
 if "difficulty" not in st.session_state:
     st.session_state.difficulty = "easy"
 
 if "current_question" not in st.session_state:
     st.session_state.current_question = None
 
+if "submitted" not in st.session_state:
+    st.session_state.submitted = False
+
 if "start_time" not in st.session_state:
     st.session_state.start_time = None
 
-# NEW FIX FLAG
-if "next_flag" not in st.session_state:
-    st.session_state.next_flag = False
-
 
 # =====================================================
-# LOAD QUESTION 
+# LOAD NEXT QUESTION
 # =====================================================
-if st.session_state.current_question is None or st.session_state.next_flag:
+def load_new_question():
     st.session_state.current_question = generate_question(st.session_state.difficulty)
+    st.session_state.submitted = False
     st.session_state.start_time = time.time()
-    st.session_state.next_flag = False  
 
+
+# INITIAL LOAD
+if st.session_state.current_question is None:
+    load_new_question()
 
 q = st.session_state.current_question
 
 
 # =====================================================
-#  DISPLAY QUESTION
+# DISPLAY QUESTION
 # =====================================================
 st.subheader(f"Difficulty: {st.session_state.difficulty.upper()}")
 st.markdown(q["question"])
 
-choice = st.radio("Choose answer:", q["options"], index=None)
+choice = st.radio(
+    "Choose answer:",
+    q["options"],
+    index=None,
+    disabled=st.session_state.submitted
+)
 
-submit = st.button("Submit")
+submit_button = st.button("Submit")
 
 
 # =====================================================
-#  ON SUBMIT
+# SUBMIT HANDLING
 # =====================================================
-if submit and choice is not None:
+if submit_button and not st.session_state.submitted:
+
+    if choice is None:
+        st.warning("Please select an answer.")
+        st.stop()
+
+    st.session_state.submitted = True
+    st.rerun()
+
+
+# =====================================================
+# RESULTS
+# =====================================================
+if st.session_state.submitted:
 
     time_taken = round(time.time() - st.session_state.start_time, 3)
-    st.success(f"⏱ Time Taken: {time_taken} seconds")
-
     correct = (q["options"].index(choice) == q["answer"])
-    st.write("✅ Correct!" if correct else "❌ Incorrect.")
 
-    feedback = st.selectbox("How was this question?",
-                            ["Too Easy", "Just Right", "Too Hard"])
+    if correct:
+        st.success(f"✅ Correct! (Time: {time_taken}s)")
+    else:
+        st.error(f"❌ Incorrect. Correct answer: {q['options'][q['answer']]}")
+        st.info(f"Time Taken: {time_taken}s")
+
+    feedback = st.selectbox("How was the difficulty?", ["Too Easy", "Just Right", "Too Hard"])
 
     # Bayesian inference
     emotion, posterior = infer_emotion(correct, time_taken, feedback)
@@ -149,33 +189,18 @@ if submit and choice is not None:
     st.markdown("### 🤖 Bayesian Emotional State")
     st.info(f"Predicted Emotion: **{emotion.upper()}**")
 
-    st.markdown("### Posterior Distribution")
-    for s, p in zip(EMOTION_STATES, posterior):
-        st.write(f"- {s} : {p:.4f}")
+    with st.expander("📘 Full Bayesian Calculations"):
+        for e, p in zip(EMOTION_STATES, posterior):
+            st.write(f"{e}: {p:.4f}")
 
-    st.markdown("### 📘 Full Calculation Details")
-    st.code(f"""
-Correct       = {correct}
-Time Taken    = {time_taken} sec
-Feedback      = {feedback}
-
-Posterior Probabilities:
-{EMOTION_STATES[0]} = {posterior[0]:.4f}
-{EMOTION_STATES[1]} = {posterior[1]:.4f}
-{EMOTION_STATES[2]} = {posterior[2]:.4f}
-{EMOTION_STATES[3]} = {posterior[3]:.4f}
-{EMOTION_STATES[4]} = {posterior[4]:.4f}
-
-Final Emotion = {emotion.upper()}
-""")
-
-    # Adaptive difficulty
+    # Difficulty adaptation
     if emotion in ["highly_confident", "confident"]:
         st.session_state.difficulty = "medium"
     else:
         st.session_state.difficulty = "easy"
 
     st.markdown("---")
+
     if st.button("Next Question →"):
-        st.session_state.next_flag = True
+        load_new_question()
         st.rerun()
