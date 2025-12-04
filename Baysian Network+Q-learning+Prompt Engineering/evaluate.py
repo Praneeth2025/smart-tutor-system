@@ -109,8 +109,8 @@ def evaluate_emotional_status(correct: bool, time: float, feedback: str) -> str:
 
     # Find the index of the maximum probability
     max_index = np.argmax(posterior_values)
-
     # Return the corresponding emotional state label
+    print("Emotion found using bayesian network:",EMOTION_STATES[max_index])
     return EMOTION_STATES[max_index]
 
 

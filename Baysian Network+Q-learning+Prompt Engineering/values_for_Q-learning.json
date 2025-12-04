@@ -1,22 +1,22 @@
 {
     "Q_TABLE": {
         "variables_easy": {
-            "highly_confident": 67.66293494036293,
+            "highly_confident": 67.76357789574362,
             "confident": 42.311704225,
             "confused": 39.606157499999995,
             "highly_confused": 23.370415361825,
             "frustrated": 5.509379224999999
         },
         "variables_medium": {
-            "highly_confident": 47.464367209,
+            "highly_confident": 47.4989053555429,
             "confident": 0.0,
-            "confused": 0.0,
+            "confused": 40.421677590300305,
             "highly_confused": 5.966275,
             "frustrated": 0.0
         },
         "variables_hard": {
-            "highly_confident": 24.994532500000002,
-            "confident": 14.0,
+            "highly_confident": 24.999507925000003,
+            "confident": 18.200000000000003,
             "confused": 0.0,
             "highly_confused": 0.0,
             "frustrated": 0.0
@@ -107,9 +107,9 @@
         }
     },
     "V_TABLE": {
-        "variables_easy": 67.66293494036293,
-        "variables_medium": 47.464367209,
-        "variables_hard": 24.994532500000002,
+        "variables_easy": 67.76357789574362,
+        "variables_medium": 47.4989053555429,
+        "variables_hard": 24.999507925000003,
         "conditionals_easy": 0.0,
         "conditionals_medium": 0.0,
         "conditionals_hard": 0.0,
