@@ -1,0 +1,18 @@
+# --- Core Application ---
+streamlit>=1.31.0       # The Web Interface
+python-dotenv>=1.0.0    # For managing API keys securely
+
+# --- Module 1: Bayesian Networks ---
+pgmpy>=0.1.25           # Probabilistic Graphical Models
+numpy>=1.24.0           # Math operations
+pandas>=2.0.0           # Data handling for evidence
+
+# --- Module 2: Search & Graphs ---
+networkx>=3.1           # Graph creation for Syllabus & Planning
+matplotlib>=3.7.0       # Visualizing the Search Trees
+
+# --- Module 4: Reinforcement Learning ---
+gymnasium>=0.29.0       # Standard RL Environment interface
+stable-baselines3>=2.2.1 # Optional: Pre-made RL algos (good for comparison)
+
+langchain>=0.1.0        # Optional: For chaining prompts nicely

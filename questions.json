@@ -1,0 +1,673 @@
+{
+    "variables": {
+        "Easy": {
+            "problems": [
+                {
+                    "id": "1",
+                    "question": "What will print(type(42)) show?",
+                    "hint": "Use the type() function on any value to see its class.",
+                    "options": ["<class 'int'>", "<class 'str'>", "<class 'float'>", "<class 'number'>"],
+                    "answer_index": 0,
+                    "answer": "<class 'int'>"
+                },
+                {
+                    "id": "2",
+                    "question": "How do you create a string in Python?",
+                    "hint": "Strings need quotes around them.",
+                    "options": ["\"hello\"", "hello", "[hello]", "{hello}"],
+                    "answer_index": 0,
+                    "answer": "\"hello\""
+                },
+                {
+                    "id": "3",
+                    "question": "Which symbol creates a list?",
+                    "hint": "Think about how you group multiple items that can change.",
+                    "options": ["[]", "()", "{}", "<>"],
+                    "answer_index": 0,
+                    "answer": "[]"
+                },
+                {
+                    "id": "4",
+                    "question": "How to add an item to the end of a list?",
+                    "hint": "It's the most commonly used list method for adding.",
+                    "options": [".append(item)", ".add(item)", ".push(item)", ".insert(item)"],
+                    "answer_index": 0,
+                    "answer": ".append(item)"
+                },
+                {
+                    "id": "5",
+                    "question": "What does len(\"python\") return?",
+                    "hint": "Count the letters in 'python' including the 'p' and 'n'.",
+                    "options": ["6", "5", "7", "Error"],
+                    "answer_index": 0,
+                    "answer": "6"
+                }
+            ]
+        },
+        "Medium": {
+            "problems": [
+                {
+                    "id": "6",
+                    "question": "How to reverse a string in one line?",
+                    "hint": "Use slicing with a step of -1.",
+                    "options": ["s[::-1]", "s.reverse()", "reverse(s)", "reversed(s)"],
+                    "answer_index": 0,
+                    "answer": "s[::-1]"
+                },
+                {
+                    "id": "7",
+                    "question": "How to create a single-item tuple?",
+                    "hint": "Without a comma, Python thinks it's just parentheses.",
+                    "options": ["(42,)", "(42)", "[42]", "{42}"],
+                    "answer_index": 0,
+                    "answer": "(42,)"
+                },
+                {
+                    "id": "8",
+                    "question": "Best way to format strings in modern Python?",
+                    "hint": "It starts with the letter 'f' and uses curly braces.",
+                    "options": ["f\"Hello {name}\"", "\"Hello {}\".format(name)", "\"Hello \" + name", "\"Hello %s\" % name"],
+                    "answer_index": 0,
+                    "answer": "f\"Hello {name}\""
+                },
+                {
+                    "id": "9",
+                    "question": "How to safely get a dictionary value that might not exist?",
+                    "hint": "This method never raises KeyError.",
+                    "options": ["dict.get(key, \"default\")", "dict[key]", "dict[key] or \"default\"", "dict.fetch(key)"],
+                    "answer_index": 0,
+                    "answer": "dict.get(key, \"default\")"
+                },
+                {
+                    "id": "10",
+                    "question": "How to remove all items from a list?",
+                    "hint": "There are multiple correct ways!",
+                    "options": ["list.clear()", "del list[:]", "list = []", "All of the above"],
+                    "answer_index": 3,
+                    "answer": "All of the above"
+                }
+            ]
+        },
+        "Hard": {
+            "problems": [
+                {
+                    "id": "11",
+                    "question": "What happens when you do: lst = [1,2,3]; lst2 = lst; lst2.append(4)",
+                    "hint": "In Python, = does NOT make a copy — it creates another reference.",
+                    "options": ["Both lists become [1,2,3,4]", "Only lst2 changes", "Error", "lst becomes None"],
+                    "answer_index": 0,
+                    "answer": "Both lists become [1,2,3,4]"
+                },
+                {
+                    "id": "12",
+                    "question": "How to copy a list properly (not just reference)?",
+                    "hint": "You need a shallow copy — any of these three methods work.",
+                    "options": ["lst.copy() or lst[:] or list(lst)", "lst", "copy(lst)", "deepcopy(lst)"],
+                    "answer_index": 0,
+                    "answer": "lst.copy() or lst[:] or list(lst)"
+                },
+                {
+                    "id": "13",
+                    "question": "How to merge two dicts in Python 3.9+?",
+                    "hint": "There's a brand new operator and an old method — both work.",
+                    "options": ["dict1 | dict2", "dict1 + dict2", "dict1.update(dict2)", "Both 1 and 3"],
+                    "answer_index": 3,
+                    "answer": "Both 1 and 3"
+                },
+                {
+                    "id": "14",
+                    "question": "Fastest way to remove duplicates from a large list?",
+                    "hint": "Sets are optimized for uniqueness and O(1) lookup.",
+                    "options": ["list(set(mylist))", "loop with if not in", "sorted(set(mylist))", "[*dict.fromkeys(mylist)]"],
+                    "answer_index": 0,
+                    "answer": "list(set(mylist))"
+                },
+                {
+                    "id": "15",
+                    "question": "What will print([i**2 for i in range(5) if i > 2]) show?",
+                    "hint": "range(5) → 0,1,2,3,4 → only i>2 passes → 3 and 4 → 9 and 16.",
+                    "options": ["[9, 16]", "[0, 1, 4, 9, 16]", "[9, 16, 25]", "[3, 4]"],
+                    "answer_index": 0,
+                    "answer": "[9, 16]"
+                }
+            ]
+        }
+    },
+    "conditional": {
+        "Easy": {
+            "problems": [
+                {
+                    "id": "1",
+                    "question": "Which keyword is used to check an alternative condition after 'if'?",
+                    "hint": "It's short for 'else if'",
+                    "options": ["elif", "else if", "elseif", "next"],
+                    "answer_index": 0,
+                    "answer": "elif"
+                },
+                {
+                    "id": "2",
+                    "question": "What runs when no 'if' or 'elif' condition is True?",
+                    "hint": "It's the fallback block",
+                    "options": ["else", "elif", "finally", "default"],
+                    "answer_index": 0,
+                    "answer": "else"
+                },
+                {
+                    "id": "3",
+                    "question": "What is the result of True and False?",
+                    "hint": "Both sides must be True for 'and' to return True",
+                    "options": ["False", "True", "None", "Error"],
+                    "answer_index": 0,
+                    "answer": "False"
+                },
+                {
+                    "id": "4",
+                    "question": "What does 'not True' equal?",
+                    "hint": "It's the opposite",
+                    "options": ["False", "True", "0", "Error"],
+                    "answer_index": 0,
+                    "answer": "False"
+                },
+                {
+                    "id": "5",
+                    "question": "Is 10 < 20 < 30 allowed in Python?",
+                    "hint": "Python supports chained comparisons!",
+                    "options": ["Yes, it's True", "Syntax error", "Only with 'and'", "False"],
+                    "answer_index": 0,
+                    "answer": "Yes, it's True"
+                }
+            ]
+        },
+        "Medium": {
+            "problems": [
+                {
+                    "id": "6",
+                    "question": "What is the correct ternary operator syntax?",
+                    "hint": "It's a one-line if-else",
+                    "options": ["value_if_true if condition else value_if_false", "condition ? true : false", "if condition then true else false", "value_if_true else value_if_false if condition"],
+                    "answer_index": 0,
+                    "answer": "value_if_true if condition else value_if_false"
+                },
+                {
+                    "id": "7",
+                    "question": "How to write: if age >= 18 → 'Adult', else → 'Minor' in one line?",
+                    "hint": "Use ternary operator",
+                    "options": ["\"Adult\" if age >= 18 else \"Minor\"", "\"Minor\" if age < 18 else \"Adult\"", "if age >= 18: \"Adult\" else \"Minor\"", "Both 1 and 2 work"],
+                    "answer_index": 3,
+                    "answer": "Both 1 and 2 work"
+                },
+                {
+                    "id": "8",
+                    "question": "What does 'or' return if the first value is True?",
+                    "hint": "Logical operators in Python are short-circuit",
+                    "options": ["The first value (True)", "The second value", "Always True", "None"],
+                    "answer_index": 0,
+                    "answer": "The first value (True)"
+                },
+                {
+                    "id": "9",
+                    "question": "How to check if a number is between 10 and 20 (inclusive)?",
+                    "hint": "You can chain comparisons!",
+                    "options": ["10 <= num <= 20", "num >= 10 and num <= 20", "num in range(10, 21)", "All of the above"],
+                    "answer_index": 3,
+                    "answer": "All of the above"
+                },
+                {
+                    "id": "10",
+                    "question": "What will print if age = 15 → status = \"Teen\" if age >= 13 else \"Child\" if age >= 0 else \"Invalid\"?",
+                    "hint": "Only one 'else' applies to the nearest 'if'",
+                    "options": ["Teen", "Child", "Invalid", "Syntax error"],
+                    "answer_index": 0,
+                    "answer": "Teen"
+                }
+            ]
+        },
+        "Hard": {
+            "problems": [
+                {
+                    "id": "11",
+                    "question": "What is the output of: print(0 and 5) ?",
+                    "hint": "'and' returns the first falsy value or the last value",
+                    "options": ["0", "5", "False", "None"],
+                    "answer_index": 0,
+                    "answer": "0"
+                },
+                {
+                    "id": "12",
+                    "question": "What is the output of: print(\"Hi\" or \"Hello\") ?",
+                    "hint": "'or' returns the first truthy value",
+                    "options": ["Hi", "Hello", "Both", "None"],
+                    "answer_index": 0,
+                    "answer": "Hi"
+                },
+                {
+                    "id": "13",
+                    "question": "Which of these is NOT a falsy value in Python?",
+                    "hint": "Falsy values: None, False, 0, \"\", [], {}, etc.",
+                    "options": ["\"0\"", "0", "\"\"", "[]"],
+                    "answer_index": 0,
+                    "answer": "\"0\""
+                },
+                {
+                    "id": "14",
+                    "question": "What will this print?\nx = 10\nresult = \"A\" if x > 5 else \"B\" if x > 8 else \"C\"\nprint(result)",
+                    "hint": "Only one condition runs – the first True one",
+                    "options": ["A", "B", "C", "Error"],
+                    "answer_index": 0,
+                    "answer": "A"
+                },
+                {
+                    "id": "15",
+                    "question": "Best way to check if user typed 'yes', 'YES', 'Yes', or 'y'?",
+                    "hint": "Convert to lower case first!",
+                    "options": ["user_input.lower() in [\"yes\", \"y\"]", "user_input == \"yes\" or \"YES\" or \"Yes\"", "user_input.strip().lower().startswith(\"y\")", "All work, but 1 is cleanest"],
+                    "answer_index": 3,
+                    "answer": "All work, but 1 is cleanest"
+                }
+            ]
+        }
+    },
+    "loops": {
+        "Easy": {
+            "problems": [
+                {
+                    "id": "1",
+                    "question": "Which loop is best when you know how many times to repeat?",
+                    "hint": "It's the one that works directly with lists, strings, and range()",
+                    "options": ["for loop", "while loop", "repeat loop", "do-while"],
+                    "answer_index": 0,
+                    "answer": "for loop"
+                },
+                {
+                    "id": "2",
+                    "question": "What does 'break' do inside a loop?",
+                    "hint": "It stops the loop completely",
+                    "options": ["Exits the loop immediately", "Skips current iteration", "Restarts loop", "Does nothing"],
+                    "answer_index": 0,
+                    "answer": "Exits the loop immediately"
+                },
+                {
+                    "id": "3",
+                    "question": "What does range(5) generate?",
+                    "hint": "It starts from 0 by default",
+                    "options": ["0,1,2,3,4", "1,2,3,4,5", "0,1,2,3,4,5", "5 numbers starting from 1"],
+                    "answer_index": 0,
+                    "answer": "0,1,2,3,4"
+                },
+                {
+                    "id": "4",
+                    "question": "What does 'continue' do?",
+                    "hint": "It goes to the next iteration right away",
+                    "options": ["Skips rest of current iteration", "Exits loop", "Pauses loop", "Restarts loop"],
+                    "answer_index": 0,
+                    "answer": "Skips rest of current iteration"
+                },
+                {
+                    "id": "5",
+                    "question": "How to loop 10 times starting from 1?",
+                    "hint": "Use range(start, stop)",
+                    "options": ["range(1, 11)", "range(10)", "range(1, 10)", "range(11)"],
+                    "answer_index": 0,
+                    "answer": "range(1, 11)"
+                }
+            ]
+        },
+        "Medium": {
+            "problems": [
+                {
+                    "id": "6",
+                    "question": "When does the 'else' block of a 'for' or 'while' loop run?",
+                    "hint": "Only when the loop finished normally",
+                    "options": ["When no 'break' occurred", "Always", "Only on error", "Never"],
+                    "answer_index": 0,
+                    "answer": "When no 'break' occurred"
+                },
+                {
+                    "id": "7",
+                    "question": "How to get both index and value while looping over a list?",
+                    "hint": "Use this built-in function with for loop",
+                    "options": ["enumerate(list)", "index(list)", "range(len(list))", "list.items()"],
+                    "answer_index": 0,
+                    "answer": "enumerate(list)"
+                },
+                {
+                    "id": "8",
+                    "question": "What will range(10, 0, -2) generate?",
+                    "hint": "Negative step goes backwards",
+                    "options": ["10,8,6,4,2", "10,9,8,...,1", "2,4,6,8,10", "10,8,6,4,2,0"],
+                    "answer_index": 0,
+                    "answer": "10,8,6,4,2"
+                },
+                {
+                    "id": "9",
+                    "question": "How to create an infinite loop safely?",
+                    "hint": "Use True and break when needed",
+                    "options": ["while True:", "for i in range(inf):", "loop forever:", "while 1:"],
+                    "answer_index": 0,
+                    "answer": "while True:"
+                },
+                {
+                    "id": "10",
+                    "question": "What prints this code?\nfor i in range(3):\n \tif i == 1:\n \t\tcontinue\n \tprint(i)",
+                    "hint": "continue skips printing when i==1",
+                    "options": ["0\\n2", "0\\n1\\n2", "1\\n2", "0\\n1"],
+                    "answer_index": 0,
+                    "answer": "0\\n2"
+                }
+            ]
+        },
+        "Hard": {
+            "problems": [
+                {
+                    "id": "11",
+                    "question": "What prints this code?\nfor i in range(5):\n \tif i == 3:\n \t\tbreak\n \tprint(i)\nelse:\n \tprint(\"Done\")",
+                    "hint": "else only runs if no break",
+                    "options": ["0\\n1\\n2", "0\\n1\\n2\\n3\\n4", "0\\n1\\n2\\nDone", "0\\n1\\n2\\n3\\nDone"],
+                    "answer_index": 0,
+                    "answer": "0\\n1\\n2"
+                },
+                {
+                    "id": "12",
+                    "question": "How to loop backwards over a list?",
+                    "hint": "Multiple ways – which is cleanest?",
+                    "options": ["for item in reversed(lst):", "for i in range(len(lst)-1, -1, -1):", "for item in lst[::-1]:", "All of the above"],
+                    "answer_index": 3,
+                    "answer": "All of the above"
+                },
+                {
+                    "id": "13",
+                    "question": "What is the output?\ni = 0\nwhile i < 5:\n \ti += 1\n \tif i == 3:\n \t\tcontinue\n \tprint(i, end=\" \")",
+                    "hint": "continue skips print when i==3",
+                    "options": ["1 2 4 5", "0 1 2 4 5", "1 2 3 4 5", "1 2 3 4"],
+                    "answer_index": 0,
+                    "answer": "1 2 4 5"
+                },
+                {
+                    "id": "14",
+                    "question": "Best way to repeat code 100 times?",
+                    "hint": "Most Pythonic and readable",
+                    "options": ["for _ in range(100):", "i=0; while i<100: ... i+=1", "repeat(100):", "loop 100 times:"],
+                    "answer_index": 0,
+                    "answer": "for _ in range(100):"
+                },
+                {
+                    "id": "15",
+                    "question": "What does enumerate('abc', start=0) yield?",
+                    "hint": "Returns pairs of (index, character)",
+                    "options": ["(0,'a'), (1,'b'), (2,'c')", "(1,'a'), (2,'b'), (3,'c')", "('a',0), ('b',1), ('c',2)", "Error"],
+                    "answer_index": 0,
+                    "answer": "(0,'a'), (1,'b'), (2,'c')"
+                }
+            ]
+        }
+    },
+    "functions": {
+        "Easy": {
+            "problems": [
+                {
+                    "id": "1",
+                    "question": "How do you define a function in Python?",
+                    "hint": "It starts with a special keyword",
+                    "options": ["def my_function():", "function my_function():", "func my_function():", "define my_function():"],
+                    "answer_index": 0,
+                    "answer": "def my_function():"
+                },
+                {
+                    "id": "2",
+                    "question": "What is the correct way to add a docstring?",
+                    "hint": "Use triple quotes inside the function",
+                    "options": ["\"\"\"This is a docstring\"\"\"", "# This is a docstring", "// This is a docstring", "/* This is a docstring */"],
+                    "answer_index": 0,
+                    "answer": "\"\"\"This is a docstring\"\"\""
+                },
+                {
+                    "id": "3",
+                    "question": "How to set a default parameter?",
+                    "hint": "Use = in the function definition",
+                    "options": ["def func(name=\"Alex\"):", "def func(name): name=\"Alex\"", "def func(name) = \"Alex\":", "default name=\"Alex\""],
+                    "answer_index": 0,
+                    "answer": "def func(name=\"Alex\"):"
+                },
+                {
+                    "id": "4",
+                    "question": "What does 'return' do?",
+                    "hint": "It sends a value back and exits the function",
+                    "options": ["Ends function and returns value", "Only prints value", "Continues function", "Creates variable"],
+                    "answer_index": 0,
+                    "answer": "Ends function and returns value"
+                },
+                {
+                    "id": "5",
+                    "question": "Can a function return multiple values?",
+                    "hint": "Yes! They come back as a tuple",
+                    "options": ["Yes, using return a, b, c", "No", "Only one value", "Only with print"],
+                    "answer_index": 0,
+                    "answer": "Yes, using return a, b, c"
+                }
+            ]
+        },
+        "Medium": {
+            "problems": [
+                {
+                    "id": "6",
+                    "question": "What is *args used for?",
+                    "hint": "Allows any number of positional arguments",
+                    "options": ["Variable number of positional args", "Keyword arguments", "Default parameters", "Global variables"],
+                    "answer_index": 0,
+                    "answer": "Variable number of positional args"
+                },
+                {
+                    "id": "7",
+                    "question": "What is **kwargs used for?",
+                    "hint": "Think 'keyword arguments'",
+                    "options": ["Variable number of keyword args", "Positional args", "Required args", "Return values"],
+                    "answer_index": 0,
+                    "answer": "Variable number of keyword args"
+                },
+                {
+                    "id": "8",
+                    "question": "Every recursive function needs a...",
+                    "hint": "Without it → infinite loop!",
+                    "options": ["Base case", "Loop", "Global variable", "Print statement"],
+                    "answer_index": 0,
+                    "answer": "Base case"
+                },
+                {
+                    "id": "9",
+                    "question": "How to create an anonymous function?",
+                    "hint": "It's short and starts with 'lambda'",
+                    "options": ["lambda x: x*2", "def x: x*2", "func(x): x*2", "anonymous x: x*2"],
+                    "answer_index": 0,
+                    "answer": "lambda x: x*2"
+                },
+                {
+                    "id": "10",
+                    "question": "What will this print?\ndef test(x):\n \treturn x * 2\nprint(test(5))",
+                    "hint": "return sends value back",
+                    "options": ["10", "5", "None", "Error"],
+                    "answer_index": 0,
+                    "answer": "10"
+                }
+            ]
+        },
+        "Hard": {
+            "problems": [
+                {
+                    "id": "11",
+                    "question": "What is the correct order in function parameters?",
+                    "hint": "Python has strict ordering rules",
+                    "options": ["positional, *args, keyword, **kwargs", "**kwargs, *args, positional", "All orders allowed", "Only positional"],
+                    "answer_index": 0,
+                    "answer": "positional, *args, keyword, **kwargs"
+                },
+                {
+                    "id": "12",
+                    "question": "What will this print?\ndef outer():\n \tx = \"local\"\n \tdef inner():\n \t\tnonlocal x\n \t\tx = \"changed\"\n \tinner()\n \tprint(x)\nouter()",
+                    "hint": "'nonlocal' allows modifying outer scope variable",
+                    "options": ["changed", "local", "Error", "None"],
+                    "answer_index": 0,
+                    "answer": "changed"
+                },
+                {
+                    "id": "13",
+                    "question": "What is factorial(5) in recursive function?",
+                    "hint": "5! = 5×4×3×2×1",
+                    "options": ["120", "15", "100", "25"],
+                    "answer_index": 0,
+                    "answer": "120"
+                },
+                {
+                    "id": "14",
+                    "question": "Which is a higher-order function?",
+                    "hint": "It accepts another function as argument",
+                    "options": ["sorted(list, key=len)", "print()", "len()", "str()"],
+                    "answer_index": 0,
+                    "answer": "sorted(list, key=len)"
+                },
+                {
+                    "id": "15",
+                    "question": "What will lambda x, y=2: x * y return when called as func(5)?",
+                    "hint": "Default parameters work in lambda too!",
+                    "options": ["10", "7", "5", "Error"],
+                    "answer_index": 0,
+                    "answer": "10"
+                }
+            ]
+        }
+    },
+  "oops": {
+        "Easy": {
+            "problems": [
+                {
+                    "id": "1",
+                    "question": "How do you define a class in Python?",
+                    "hint": "Same keyword as function but capitalized name",
+                    "options": ["class MyClass:", "def MyClass():", "class MyClass():", "create class MyClass:"],
+                    "answer_index": 0,
+                    "answer": "class MyClass:"
+                },
+                {
+                    "id": "2",
+                    "question": "What is __init__ called?",
+                    "hint": "Runs when object is created",
+                    "options": ["Constructor", "Destructor", "Starter", "Initializer"],
+                    "answer_index": 0,
+                    "answer": "Constructor"
+                },
+                {
+                    "id": "3",
+                    "question": "What does 'self' refer to inside a method?",
+                    "hint": "It's the current object",
+                    "options": ["The instance/object", "The class", "Global scope", "Nothing"],
+                    "answer_index": 0,
+                    "answer": "The instance/object"
+                },
+                {
+                    "id": "4",
+                    "question": "How to create an object from a class?",
+                    "hint": "Like calling a function",
+                    "options": ["obj = MyClass()", "obj = new MyClass()", "obj = create MyClass", "MyClass.new()"],
+                    "answer_index": 0,
+                    "answer": "obj = MyClass()"
+                },
+                {
+                    "id": "5",
+                    "question": "Which keyword creates inheritance?",
+                    "hint": "Inside class parentheses",
+                    "options": ["class Child(Parent):", "class Child extends Parent:", "class Child inherits Parent:", "class Child from Parent:"],
+                    "answer_index": 0,
+                    "answer": "class Child(Parent):"
+                }
+            ]
+        },
+        "Medium": {
+            "problems": [
+                {
+                    "id": "6",
+                    "question": "How to call parent class method in child?",
+                    "hint": "Use this built-in function",
+                    "options": ["super().method()", "parent().method()", "base().method()", "self.parent.method()"],
+                    "answer_index": 0,
+                    "answer": "super().method()"
+                },
+                {
+                    "id": "7",
+                    "question": "What is method overriding?",
+                    "hint": "Child redefines parent's method",
+                    "options": ["Child has same method name as parent", "Child deletes parent method", "Parent calls child method", "Using super()"],
+                    "answer_index": 0,
+                    "answer": "Child has same method name as parent"
+                },
+                {
+                    "id": "8",
+                    "question": "What does @property decorator do?",
+                    "hint": "Makes method act like attribute",
+                    "options": ["Access method without parentheses", "Makes method private", "Makes method static", "Deletes method"],
+                    "answer_index": 0,
+                    "answer": "Access method without parentheses"
+                },
+                {
+                    "id": "9",
+                    "question": "Which is a magic method?",
+                    "hint": "They have double underscores",
+                    "options": ["__str__", "display()", "_show()", "print_self()"],
+                    "answer_index": 0,
+                    "answer": "__str__"
+                },
+                {
+                    "id": "10",
+                    "question": "What prints when you print(object)?",
+                    "hint": "Uses which magic method?",
+                    "options": ["__str__", "__repr__", "__len__", "__init__"],
+                    "answer_index": 0,
+                    "answer": "__str__"
+                }
+            ]
+        },
+        "Hard": {
+            "problems": [
+                {
+                    "id": "11",
+                    "question": "In multiple inheritance, which parent's method is called first?",
+                    "hint": "Check Method Resolution Order",
+                    "options": ["Leftmost parent (MRO)", "Rightmost parent", "Random", "Both at once"],
+                    "answer_index": 0,
+                    "answer": "Leftmost parent (MRO)"
+                },
+                {
+                    "id": "12",
+                    "question": "What does __repr__ return when used in list/print?",
+                    "hint": "It's for developers, should be unambiguous",
+                    "options": ["Unambiguous representation (ideally recreatable)", "User-friendly string", "Length of object", "Error message"],
+                    "answer_index": 0,
+                    "answer": "Unambiguous representation (ideally recreatable)"
+                },
+                {
+                    "id": "13",
+                    "question": "How to make a true private attribute?",
+                    "hint": "Python uses name mangling",
+                    "options": ["__attribute", "_attribute", "attribute", "#attribute"],
+                    "answer_index": 0,
+                    "answer": "__attribute"
+                },
+                {
+                    "id": "14",
+                    "question": "What is polymorphism?",
+                    "hint": "Same interface, different behavior",
+                    "options": ["Different classes use same method name", "All objects are same type", "One class inherits all", "Using super()"],
+                    "answer_index": 0,
+                    "answer": "Different classes use same method name"
+                },
+                {
+                    "id": "15",
+                    "question": "What will print(Dog.__mro__) show?",
+                    "hint": "Shows method resolution order",
+                    "options": ["(<class 'Dog'>, <class 'Mammal'>, <class 'Animal'>, <class 'object'>)", "(<class 'Animal'>, <class 'Dog'>)", "Error", "Only Dog"],
+                    "answer_index": 0,
+                    "answer": "(<class 'Dog'>, <class 'Mammal'>, <class 'Animal'>, <class 'object'>)"
+                }
+            ]
+        }
+    }
+}
+
